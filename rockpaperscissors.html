@@ -5,6 +5,11 @@
         <title>Rock Paper Scissors</title>
     </head>
     <body>
+        <h1>Let's play a game of Rock, Paper, Scissors!</h1>
+        <button class="Rock">Rock</button>
+        <button class="Paper">Paper</button>
+        <button class="Scissors">Scissors</button>
+
         <script>
             function getRandomInt(max){
                 return Math.floor(Math.random() * max);
@@ -24,30 +29,29 @@
                 const computerSelection = getComputerChoice();
 
                 if (playerSelection === computerSelection){
-                    return "It's a tie!";
+                    alert("It's a tie!");
                 } else if (playerSelection === "Rock" && computerSelection === "Paper"){
-                    return "You lose! Paper beats rock!";
+                    alert("You lose! Paper beats rock!");
                 } else if (playerSelection === "Rock" && computerSelection === "Scissors"){
-                    return "You win! Rock beats scissors!";
+                    alert("You win! Rock beats scissors!");
                 } else if (playerSelection === "Paper" && computerSelection === "Scissors"){
-                    return "You lose! Scissors beats paper!";
+                    alert("You lose! Scissors beats paper!");
                 } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-                    return "You win! Paper beats rock!";
+                    alert("You win! Paper beats rock!");
                 } else if (playerSelection === "Scissors" && computerSelection === "Rock"){
-                    return "You lose! Rock beats scissors!";
+                    alert("You lose! Rock beats scissors!");
                 } else if (playerSelection === "Scissors" && computerSelection === "Paper"){
-                    return "You win! Scissors beats paper!";
+                    alert("You win! Scissors beats paper!");
                 }
             }
 
-            function playGame(){
-                alert("Let's play a game of Rock, Paper, Scissors!");
-                let playerSelection = prompt("Rock, paper, or scissors?");
-                playerSelection = toTitleCase(playerSelection);
-                alert(gameLogic(playerSelection));
-            }
+            const rockButton = document.querySelector(".Rock");
+            const paperButton = document.querySelector(".Paper");
+            const scissorsButton = document.querySelector(".Scissors");
 
-            playGame();
+            rockButton.addEventListener("click", () => gameLogic("Rock"));
+            paperButton.addEventListener("click", () => gameLogic("Paper"));
+            scissorsButton.addEventListener("click", () => gameLogic("Scissors"));
         </script>
     </body>
 </html>
