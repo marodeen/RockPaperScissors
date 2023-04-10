@@ -9,8 +9,18 @@
         <button class="Rock">Rock</button>
         <button class="Paper">Paper</button>
         <button class="Scissors">Scissors</button>
+        <div class="outcome"></div>
 
         <script>
+            const rockButton = document.querySelector(".Rock");
+            const paperButton = document.querySelector(".Paper");
+            const scissorsButton = document.querySelector(".Scissors");
+            const outcome = document.querySelector(".outcome");
+
+            rockButton.addEventListener("click", () => gameLogic("Rock"));
+            paperButton.addEventListener("click", () => gameLogic("Paper"));
+            scissorsButton.addEventListener("click", () => gameLogic("Scissors"));
+
             function getRandomInt(max){
                 return Math.floor(Math.random() * max);
             }
@@ -20,38 +30,27 @@
                 return options[getRandomInt(3)];
             }
 
-            function toTitleCase(text){
-                text = text.toLowerCase();
-                return text.charAt(0).toUpperCase() + text.slice(1);
-            }
-
             function gameLogic(playerSelection){
                 const computerSelection = getComputerChoice();
 
                 if (playerSelection === computerSelection){
-                    alert("It's a tie!");
+                    outcome.textContent="It's a tie!";
                 } else if (playerSelection === "Rock" && computerSelection === "Paper"){
-                    alert("You lose! Paper beats rock!");
+                    outcome.textContent="You lose! Paper beats rock!";
                 } else if (playerSelection === "Rock" && computerSelection === "Scissors"){
-                    alert("You win! Rock beats scissors!");
+                    outcome.textContent="You win! Rock beats scissors!";
                 } else if (playerSelection === "Paper" && computerSelection === "Scissors"){
-                    alert("You lose! Scissors beats paper!");
+                    outcome.textContent="You lose! Scissors beats paper!";
                 } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-                    alert("You win! Paper beats rock!");
+                    outcome.textContent="You win! Paper beats rock!";
                 } else if (playerSelection === "Scissors" && computerSelection === "Rock"){
-                    alert("You lose! Rock beats scissors!");
+                    outcome.textContent="You lose! Rock beats scissors!";
                 } else if (playerSelection === "Scissors" && computerSelection === "Paper"){
-                    alert("You win! Scissors beats paper!");
+                    outcome.textContent="You win! Scissors beats paper!";
                 }
             }
 
-            const rockButton = document.querySelector(".Rock");
-            const paperButton = document.querySelector(".Paper");
-            const scissorsButton = document.querySelector(".Scissors");
 
-            rockButton.addEventListener("click", () => gameLogic("Rock"));
-            paperButton.addEventListener("click", () => gameLogic("Paper"));
-            scissorsButton.addEventListener("click", () => gameLogic("Scissors"));
         </script>
     </body>
 </html>
