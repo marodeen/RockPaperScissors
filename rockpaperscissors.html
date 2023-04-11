@@ -10,12 +10,19 @@
         <button class="Paper">Paper</button>
         <button class="Scissors">Scissors</button>
         <div class="outcome"></div>
+        <div class="scoreboard"></div>
 
         <script>
             const rockButton = document.querySelector(".Rock");
             const paperButton = document.querySelector(".Paper");
             const scissorsButton = document.querySelector(".Scissors");
             const outcome = document.querySelector(".outcome");
+            const showScoreboard = document.querySelector(".scoreboard");
+            const scoreboard = {
+                numberOfGames: 0,
+                playerWin: 0,
+                computerWin: 0
+            };
 
             rockButton.addEventListener("click", () => gameLogic("Rock"));
             paperButton.addEventListener("click", () => gameLogic("Paper"));
@@ -31,26 +38,44 @@
             }
 
             function gameLogic(playerSelection){
+
+                if (scoreboard.numberOfGames >= 5){
+                    outcome.textContent = "Game over!";
+                    rockButton.disabled = true;
+                    paperButton.disabled = true;
+                    scissorsButton.disabled = true;
+                    return;
+                }
+
                 const computerSelection = getComputerChoice();
 
                 if (playerSelection === computerSelection){
                     outcome.textContent="It's a tie!";
                 } else if (playerSelection === "Rock" && computerSelection === "Paper"){
                     outcome.textContent="You lose! Paper beats rock!";
+                    scoreboard.computerWin += 1;
                 } else if (playerSelection === "Rock" && computerSelection === "Scissors"){
                     outcome.textContent="You win! Rock beats scissors!";
+                    scoreboard.playerWin += 1;
                 } else if (playerSelection === "Paper" && computerSelection === "Scissors"){
                     outcome.textContent="You lose! Scissors beats paper!";
+                    scoreboard.computerWin += 1;
                 } else if (playerSelection === "Paper" && computerSelection === "Rock") {
                     outcome.textContent="You win! Paper beats rock!";
+                    scoreboard.playerWin += 1;
                 } else if (playerSelection === "Scissors" && computerSelection === "Rock"){
                     outcome.textContent="You lose! Rock beats scissors!";
+                    scoreboard.computerWin += 1;
                 } else if (playerSelection === "Scissors" && computerSelection === "Paper"){
                     outcome.textContent="You win! Scissors beats paper!";
+                    scoreboard.playerWin +=1 ;
                 }
+
+                scoreboard.numberOfGames += 1;
+                showScoreboard.textContent = `Game counter: ${scoreboard.numberOfGames}
+                                              Player win: ${scoreboard.playerWin}
+                                              Computer win: ${scoreboard.computerWin}`;
             }
-
-
         </script>
     </body>
 </html>
